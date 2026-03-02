@@ -1,0 +1,109 @@
+<div id="divFormProveedores" class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h3>Detalle de Proveedor</h3>
+                <button class="btn btn-outline-danger"> X </button>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2">
+                        <div class="form-floating">
+                            <input id="txtIdProveedor" type="text" class="form-control" placeholder="ID" readonly disabled/>
+                            <label for="txtIdProveedor" class="form-label">ID:</label>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="form-floating">
+                            <input id="txtNomProveedor" type="text" class="form-control" placeholder="Nombre:"/>
+                            <label for="txtNomProveedor" class="form-label">Nombre del Proveedor:</label>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="form-floating">
+                            <input id="txtRfc" type="text" class="form-control" placeholder="RFC:"/>
+                            <label for="txtRfc" class="form-label">RFC:</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <input id="txtRazonSocial" type="text" class="form-control" placeholder="Razón Social:"/>
+                            <label for="txtRazonSocial" class="form-label">Razón Social:</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <input id="txtDireccion" type="text" class="form-control" placeholder="Dirección:"/>
+                            <label for="txtDireccion" class="form-label">Dirección:</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <input id="txtEmail" type="email" class="form-control" placeholder="Email:"/>
+                            <label for="txtEmail" class="form-label">Correo Electrónico:</label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-floating">
+                            <input id="txtTelFijo" type="text" class="form-control" placeholder="Teléfono Fijo:"/>
+                            <label for="txtTelFijo" class="form-label">Teléfono Fijo:</label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-floating">
+                            <input id="txtTelMovil" type="text" class="form-control" placeholder="Teléfono Móvil:"/>
+                            <label for="txtTelMovil" class="form-label">Teléfono Móvil:</label>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-floating">
+                            <input id="txtEstatusProveedor" type="text" class="form-control" placeholder="Estatus:"/>
+                            <label for="txtEstatusProveedor" class="form-label">Estatus:</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12 d-flex justify-content-center">
+                        <button class="btn btn-outline-primary"> 💾 Guardar</button>
+                        <button class="btn btn-outline-danger ms-2"> 🗑️ Eliminar</button>
+                        <button class="btn btn-outline-success ms-2"> 📦 Nuevo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divTablaProveedores" class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h3>Catálogo de Proveedores</h3>
+                <button class="btn btn-outline-success"> + Agregar</button>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>RFC</th>
+                            <th>Tel. Móvil</th>
+                            <th>Estatus</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyProveedores">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

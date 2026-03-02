@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Fruit Store V2.0</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Base de Datos, Fruit Store">
+        <meta name="author" content="Oswaldo Cervantes León">
+        <link rel="stylesheet" href="style/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="style/bootstrap/css/bootstrap-grid.css">
+        <link rel="stylesheet" href="style/bootstrap/css/bootstrap-utilities.css">
+        <link rel="stylesheet" href="style/sweetalert2/sweetalert2.min.css">
+        <style>
+            body {
+                background: url(img/background.jpg) no-repeat center center fixed;;
+                background-size: cover;
+            }
+            .login-card {
+                border: none;
+                border-radius: 12px;
+                box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.6);
+                overflow: hidden;
+            }
+            .header-brand {
+                background-color: #28a745;
+                color: #ffffff;
+            }
+            .btn-auth {
+                background-color: #1e7e34;
+                color: white;
+                font-weight: bold;
+            }
+            .btn-auth:hover {
+                background-color: #155d27;
+                color: white;
+            }
+        </style>
+    </head>
+    <body class="d-flex align-items-center justify-content-center vh-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+                    <div class="card login-card bg-white">
+                        <div class="card-header header-brand text-center py-4">
+                            <h2 class="h4 mb-0">FruitStore - Inicio de Sesión</h2>
+                        </div>
+                        <div class="card-body p-4">
+                            <form id="frmInicioSesion">
+                                <div class="text-center mb-4">
+                                    <img src="img/perfil.png" alt="Avatar de Usuario" class="img-fluid rounded-circle border border-success p-1" style="max-width: 120px;">
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input id="txtUsuario" type="text" class="form-control" placeholder="Ingresa el Usuario:">
+                                    <label for="txtUsuario">Ingresa el Usuario:</label>
+                                </div>
+                                <div class="form-floating mb-4">
+                                    <input id="txtContrasenia" type="password" class="form-control" placeholder="Ingrese la Contraseña:">
+                                    <label for="txtContrasenia">Ingrese la Contraseña:</label>
+                                </div>
+                                <div class="d-grid">
+                                    <button class="btn btn-auth btn-lg" onclick="login(event)">Iniciar Sesión</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="style/bootstrap/js/bootstrap.js"></script>
+        <script src="style/bootstrap/js/bootstrap.bundle.js"></script>
+        <script src="style/sweetalert2/sweetalert2.all.min.js"></script>
+        <script src="js/Identificacion.js"></script>
+    </body>
+</html>

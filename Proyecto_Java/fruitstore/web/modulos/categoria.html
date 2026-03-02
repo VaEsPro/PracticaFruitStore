@@ -1,0 +1,64 @@
+<div id="divFormCategorias" class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h3>Detalle de Categoría</h3>
+                <button class="btn btn-outline-danger"> X </button>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <input id="txtIdCategoria" type="text" class="form-control" placeholder="ID Categoría" readonly disabled/>
+                            <label for="txtIdCategoria" class="form-label">ID Categoría:</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <input id="txtNomCategoria" type="text" class="form-control" placeholder="Nombre de la Categoría:"/>
+                            <label for="txtNomCategoria" class="form-label">Nombre de la Categoría:</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <input id="txtEstatusCategoria" type="text" class="form-control" placeholder="Estatus:"/>
+                            <label for="txtEstatusCategoria" class="form-label">Estatus:</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 d-flex justify-content-center">
+                        <button class="btn btn-outline-primary"> 💾 Guardar</button>
+                        <button class="btn btn-outline-danger ms-2"> 🗑️ Eliminar</button>
+                        <button class="btn btn-outline-success ms-2"> 📦 Nuevo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divTablaCategorias" class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h3>Catálogo de Categorías</h3>
+                <button class="btn btn-outline-success"> + Agregar</button>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Estatus</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyCategorias">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

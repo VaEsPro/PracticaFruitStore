@@ -1,0 +1,158 @@
+<div id="divFormVendedores" class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h3>Detalle de Vendedor</h3>
+                <button class="btn btn-outline-danger"> X </button>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-2">
+                        <div class="form-floating">
+                            <input id="txtIdVendedor" type="text" class="form-control" placeholder="ID" readonly disabled/>
+                            <label for="txtIdVendedor" class="form-label">ID:</label>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="form-floating">
+                            <input id="txtNomVendedor" type="text" class="form-control" placeholder="Nombre completo:"/>
+                            <label for="txtNomVendedor" class="form-label">Nombre completo:</label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-floating">
+                            <input id="txtFechaNac" type="date" class="form-control" placeholder="Fecha Nacimiento:"/>
+                            <label for="txtFechaNac" class="form-label">Fecha Nacimiento:</label>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-floating">
+                            <select id="cmbGenero" class="form-select">
+                                <option value="M">Masculino</option>
+                                <option value="F">Femenino</option>
+                                <option value="O">Otro</option>
+                            </select>
+                            <label for="cmbGenero" class="form-label">Género:</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <input id="txtCalle" type="text" class="form-control" placeholder="Calle:"/>
+                            <label for="txtCalle" class="form-label">Calle:</label>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-floating">
+                            <input id="txtNumExt" type="text" class="form-control" placeholder="No. Ext:"/>
+                            <label for="txtNumExt" class="form-label">No. Ext:</label>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-floating">
+                            <input id="txtNumInt" type="text" class="form-control" placeholder="No. Int:"/>
+                            <label for="txtNumInt" class="form-label">No. Int:</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <input id="txtColonia" type="text" class="form-control" placeholder="Colonia:"/>
+                            <label for="txtColonia" class="form-label">Colonia:</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-3">
+                        <div class="form-floating">
+                            <input id="txtCp" type="text" class="form-control" placeholder="Código Postal:"/>
+                            <label for="txtCp" class="form-label">C.P.:</label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-floating">
+                            <input id="txtCiudad" type="text" class="form-control" placeholder="Ej. León"/>
+                            <label for="txtCiudad" class="form-label">Ciudad:</label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-floating">
+                            <input id="txtEstado" type="text" class="form-control" placeholder="Ej. Guanajuato"/>
+                            <label for="txtEstado" class="form-label">Estado:</label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-floating">
+                            <input id="txtPais" type="text" class="form-control" placeholder="Ej. México"/>
+                            <label for="txtPais" class="form-label">País:</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-3">
+                        <div class="form-floating">
+                            <input id="txtTelefonoVendedor" type="text" class="form-control" placeholder="Teléfono:"/>
+                            <label for="txtTelefonoVendedor" class="form-label">Teléfono:</label>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-floating">
+                            <input id="txtEmailVendedor" type="email" class="form-control" placeholder="Correo:"/>
+                            <label for="txtEmailVendedor" class="form-label">Correo:</label>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-floating">
+                            <input id="txtFechaAlta" type="date" class="form-control" placeholder="Fecha Alta:"/>
+                            <label for="txtFechaAlta" class="form-label">Fecha Alta:</label>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-floating">
+                            <input id="txtEstatusVendedor" type="text" class="form-control" placeholder="Estatus:"/>
+                            <label for="txtEstatusVendedor" class="form-label">Estatus:</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12 d-flex justify-content-center">
+                        <button class="btn btn-outline-primary"> 💾 Guardar</button>
+                        <button class="btn btn-outline-danger ms-2"> 🗑️ Eliminar</button>
+                        <button class="btn btn-outline-success ms-2"> 📦 Nuevo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divTablaVendedores" class="row mt-3">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h3>Catálogo de Vendedores</h3>
+                <button class="btn btn-outline-success"> + Agregar</button>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Estatus</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodyVendedores">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
