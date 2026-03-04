@@ -4,9 +4,8 @@ async function cargarModuloCategorias(){
     let contenido = await respuesta.text();
     document.getElementById("divPrincipal").innerHTML = contenido;
     
-    let cm = null;
-    
-    cm = await import('./FruitstoreCategorias.js');
+    cm = await import('./categorias.js');
+    window.cm = cm;
     cm.inicializar();
 }
 
@@ -16,9 +15,8 @@ async function cargarModuloProductos(){
     let contenido = await respuesta.text();
     document.getElementById("divPrincipal").innerHTML = contenido;
     
-    let cm = null;
-    
-    cm = await import('./FruitstoreProductos.js');
+    cm = await import('./productos.js');
+    window.cm = cm;
     cm.inicializar();
 }
 
@@ -28,9 +26,8 @@ async function cargarModuloProveedores(){
     let contenido = await respuesta.text();
     document.getElementById("divPrincipal").innerHTML = contenido;
     
-    let cm = null;
-    
-    cm = await import('./FruitstoreProveedores.js');
+    cm = await import('./proveedores.js');
+    window.cm = cm;
     cm.inicializar();
 }
 
@@ -40,8 +37,9 @@ async function cargarModuloVendedores(){
     let contenido = await respuesta.text();
     document.getElementById("divPrincipal").innerHTML = contenido;
     
-    let cm = null;
-    
-    cm = await import('./FruitstoreVendedores.js');
+    cm = await import('./vendedores.js');
+    window.cm = cm;
     cm.inicializar();
 }
+
+loadLocalUser();

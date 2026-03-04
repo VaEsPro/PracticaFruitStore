@@ -53,8 +53,7 @@ public class RESTCategoria {
                       "error":"no se proporcionaron datos"
                       }
                       """;
-            } else 
-            {
+            } else {
                 if (c.getId() == 0) 
                     cp.insert(c);
                 else 
