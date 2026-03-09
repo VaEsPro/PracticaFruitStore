@@ -95,7 +95,7 @@ public class ControllerVendedor {
         // Se define la consulta SQL:
         String sql = "UPDATE vendedor SET nombre=?, fechaNac=?, genero=?, calle=?, "
                 + "numExt=?, numInt=?, colonia=?, cp=?, ciudad=?, estado=?, pais=?, "
-                + "telefono=?, fechaAlta=?, email=? WHERE idVendedor=?";
+                + "telefono=?, fechaAlta=?, email=?, estatus=? WHERE idVendedor=?";
         
         // Se crea un objeto de conexion con MySQL:
         ConnectionMySQL connMySQL = new ConnectionMySQL();
@@ -121,6 +121,8 @@ public class ControllerVendedor {
         pstmt.setString(12, v.getTelefono());
         pstmt.setString(13, v.getFechaAlta());
         pstmt.setString(14, v.getEmail());
+        pstmt.setInt(15, v.getStatus());
+        pstmt.setInt(16, v.getId());
         
         // Se ejecuta la sentencia:
         pstmt.executeUpdate();
@@ -178,34 +180,22 @@ public class ControllerVendedor {
     {
         // Se define la consulta SQL que devuelve a todos los vendedores
         // ordenados por nombre de manera ascendente:
-        String sql = "SELECT * FROM v_vendedor WHERE estatus=1 ORDER BY nombre ASC";
+        String sql = "SELECT * FROM v_vendedor ORDER BY nombre ASC";
         
-        // Se crea un objeto de conexion con MySQL:
+        List<Vendedor> vendedores = new ArrayList<>();
         ConnectionMySQL connMySQL = new ConnectionMySQL();
-        
-        // Se abre la conexion con MySQL:
         Connection conn = connMySQL.open();
-        
-        // Se genera un objeto para definir la consulta SQL:
         PreparedStatement pstmt = conn.prepareStatement(sql);
-        
-        // Se ejecuta la consulta SQL y se almacena el resultado:
         ResultSet rs = pstmt.executeQuery();
         
-        // En este objeto de tipo lista se agregara cada registro recuperado
-        // de la BD:
-        List<Vendedor> vendedores = new ArrayList<>();
+        while(rs.next()){
+            vendedores.add(fill(rs));
+        }
         
-        // Se itera sobre cada renglon (Row) del ResultSet:
-        while(rs.next())
-            vendedores.add(fill(rs)); //Por cada registro, se genera un nuevo objeto
-        
-        // Se cierran los objetos de BD:
         rs.close();
         pstmt.close();
         conn.close();
         
-        // Se devuelve la lista con los vendedores recuperados de la BD.
         return vendedores;
     }
     

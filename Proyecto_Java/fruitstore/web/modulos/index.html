@@ -1,59 +1,100 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Índice Fruit Store V2.0</title>
+        <title>Fruit Store V2.0</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Base de Datos, Fruit Store">
         <meta name="author" content="Oswaldo Cervantes León">
-        <link rel="stylesheet" href="../style/bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="../style/bootstrap/css/bootstrap-grid.css">
-        <link rel="stylesheet" href="../style/bootstrap/css/bootstrap-utilities.css">
+        <link rel="stylesheet" href="../style/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../style/fontawesome-free-6.4.0-web/css/all.min.css">
         <link rel="stylesheet" href="../style/sweetalert2/sweetalert2.min.css">
+        <style>
+            body {
+                background-color: #f8f9fa;
+            }
+            .navbar-custom {
+                background-color: #ff7a00;
+            }
+            .navbar-custom .navbar-brand,
+            .navbar-custom .nav-link,
+            .navbar-custom .navbar-text {
+                color: #ffffff !important;
+            }
+            #contenedorPrincipal {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                padding: 20px;
+                background-color: #ffffff;
+                border: 1px solid #ced4da;
+                border-radius: 5px;
+                min-height: 75vh;
+            }
+            .card-custom {
+                border: 1px solid #ced4da;
+                border-radius: 5px;
+                background-color: #ffffff;
+            }
+            .card-header-custom {
+                background-color: #e9ecef;
+                border-bottom: 1px solid #ced4da;
+                font-weight: bold;
+                color: #212529;
+                padding: 12px 15px;
+            }
+        </style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg" style="background-color: #96bfe8">
-            <div class="container-fluid p-3" >
-                <div class="collapse navbar-collapse">
-                    <img src="../img/fruta_verdura.png" style="width: 64px;height: 64px;"/>
-                    <h1>FruitStore</h1>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-5">
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <i class="fa-solid fa-basket-shopping me-1"></i> FruitStore
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" onclick="cargarModuloProductos();">
-                                Productos
-                            </a>
+                            <a class="nav-link" href="#" onclick="cargarModuloInicio();"><i class="fa-solid fa-house"></i> Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" onclick="cargarModuloCategorias()">
-                                Categorias
-                            </a>
+                            <a class="nav-link" href="#" onclick="cargarModuloProductos();"><i class="fa-solid fa-box"></i> Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" onclick="cargarModuloProveedores()">
-                                Proveedores
-                            </a>
+                            <a class="nav-link" href="#" onclick="cargarModuloCategorias();"><i class="fa-solid fa-tags"></i> Categorías</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" onclick="cargarModuloVendedores()">
-                                Vendedores
-                            </a>
+                            <a class="nav-link" href="#" onclick="cargarModuloVendedores();"><i class="fa-solid fa-user-tie"></i> Vendedores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="cargarModuloProveedores();"><i class="fa-solid fa-truck"></i> Proveedores</a>
                         </li>
                     </ul>
-                    <div class="ms-auto d-flex align-items-center">
-                        <label class="fw-semibold text-light mb-0">
-                            Bienvenido:
-                            <span id="spnNombreCompletoUsuario" class="text-light">------</span>
-                        </label>
-                        <button class="btn btn-link text-light text-decoration-none ms-3" onclick="logout();">
-                            <i class="fa fa-gear me-1"></i> Cerrar Sesión
+
+                    <div class="d-flex align-items-center">
+                        <span class="navbar-text me-4">
+                            Bienvenido: <span id="spnNombreCompletoUsuario" class="fw-bold"></span>
+                        </span>
+                        <button class="btn btn-light btn-sm fw-bold text-danger border" onclick="logout();">
+                            <i class="fa-solid fa-right-from-bracket"></i> Salir
                         </button>
                     </div>
                 </div>
             </div>
         </nav>
-        <div id="divPrincipal" class="container-fluid mt-2">
 
+        <div class="container-fluid">
+            <div id="divPrincipal">
+                <div class="text-center py-4">
+                    <i class="fa-solid fa-basket-shopping fa-6x mb-4" style="color: #ff7a00; opacity: 0.8;"></i>
+                    <h2 class="fw-bold">Sistema de Gestión FruitStore</h2>
+                    <p>Seleccione una opción del menú superior para comenzar.</p>
+                </div>
+            </div>
         </div>
+
         <script src="../style/bootstrap/js/bootstrap.js"></script>
         <script src="../style/bootstrap/js/bootstrap.bundle.js"></script>
         <script src="../style/sweetalert2/sweetalert2.all.min.js"></script>

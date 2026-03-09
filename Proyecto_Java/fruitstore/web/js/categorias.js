@@ -2,7 +2,7 @@ let listaCategorias = [];
 
 export async function inicializar(){
     setDetalleVisible(false);
-    cargarListaCategorias();
+    await cargarListaCategorias();
 }
 
 async function cargarListaCategorias(){
@@ -15,10 +15,14 @@ async function cargarListaCategorias(){
 function refrescarTablaCategorias() {
     let contenido = '';
     for (let i = 0; i < listaCategorias.length; i++) {
+        let cat = listaCategorias[i];
+        let textoStatus = (cat.status === 1) ? '<span class="text-success fw-bold">Activo</span>' : '<span class="text-danger fw-bold">Inactivo</span>';
+        
         contenido += '<tr>';
-        contenido += '<td>' + listaCategorias[i].id + '</td>'; 
-        contenido += '<td>' + listaCategorias[i].nombre + '</td>'; 
-        contenido += '<td>' + '<a href="#" onclick="cm.mostrarDetalleCategoria(' + i + ')">Ver Detalle</a>' + '</td>';
+        contenido += '<td>' + cat.id + '</td>'; 
+        contenido += '<td>' + cat.nombre + '</td>'; 
+        contenido += '<td>' + textoStatus + '</td>'; 
+        contenido += '<td class="text-center"><button class="btn btn-outline-primary btn-sm" onclick="cm.mostrarDetalleCategoria(' + i + ')">Ver Detalle</button></td>';
         contenido += '</tr>';
     }
     document.getElementById("tbodyCategorias").innerHTML = contenido;
@@ -32,7 +36,10 @@ export async function save() {
     else
         categoria.id = parseInt(document.getElementById("txtIdCategoria").value.trim());
     
-    categoria.nombre = document.getElementById("txtNombreCategoria").value;
+    categoria.nombre = document.getElementById("txtNomCategoria").value;
+    
+    let estatusVal = document.getElementById("txtStatus").value.trim();
+    categoria.status = (estatusVal === "") ? 0 : parseInt(estatusVal);
     
     let categoriaJSON = JSON.stringify(categoria);
     
@@ -58,7 +65,10 @@ export async function save() {
                 
     document.getElementById("txtIdCategoria").value = datos.id;
     Swal.fire('Movimiento realizado.', 'Datos de Categoría guardados.', 'success');
+    
     cargarListaCategorias();
+    limpiarFormulario();
+    setDetalleVisible(false);
 }
 
 export async function deletE() {
@@ -94,22 +104,26 @@ export async function deletE() {
     
     cargarListaCategorias();
     limpiarFormulario();
+    setDetalleVisible(false);
 }
 
 export function mostrarDetalleCategoria(posicion) {
     let c = listaCategorias[posicion];
     document.getElementById("txtIdCategoria").value = c.id;
-    document.getElementById("txtNombreCategoria").value = c.nombre;
+    document.getElementById("txtNomCategoria").value = c.nombre;
+    if(c.status !== undefined) {
+        document.getElementById("txtStatus").value = c.status;
+    }
     setDetalleVisible(true);
 }
 
 export function setDetalleVisible(valor) {
     if (valor === true) {
-        document.getElementById("divControlCategorias").style.display = '';
-        document.getElementById("divDetalleCategoria").style.display = '';
+        document.getElementById("divFormCategorias").style.display = '';
+        document.getElementById("divTablaCategorias").style.display = 'none';
     } else {
-        document.getElementById("divDetalleCategoria").style.display = 'none';
-        document.getElementById("divControlCategorias").style.display = '';
+        document.getElementById("divTablaCategorias").style.display = '';
+        document.getElementById("divFormCategorias").style.display = 'none';
     }
 }
 
@@ -118,7 +132,8 @@ export function cerrarDetalle() {
     setDetalleVisible(false);
 }
 
-function limpiarFormulario() {
+export function limpiarFormulario() {
     document.getElementById("txtIdCategoria").value = "";
-    document.getElementById("txtNombreCategoria").value = "";
+    document.getElementById("txtNomCategoria").value = "";
+    document.getElementById("txtStatus").value = "";
 }

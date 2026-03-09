@@ -52,7 +52,7 @@ public class ControllerProducto
     public int insert(Producto p) throws Exception
     {
         // Se define la consulta SQL:
-        String sql = "INSERT INTO producto(nombre, idCategoria, precioCompra, precioVenta, existencia) VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO producto(nombre, idCategoria, precioCompra, precioVenta, existencia, estatus) VALUES(?, ?, ?, ?, ?)";
         
         // Se crea un objeto de conexion con MySQL:
         ConnectionMySQL connMySQL = new ConnectionMySQL();
@@ -107,7 +107,7 @@ public class ControllerProducto
     public void update(Producto p) throws Exception
     {
         // Se define la consulta SQL:
-        String sql = "UPDATE producto SET nombre=?, idCategoria=?, precioCompra=?, precioventa=?, existencia=? WHERE idProducto=?";
+        String sql = "UPDATE producto SET nombre=?, idCategoria=?, precioCompra=?, precioventa=?, existencia=?, estatus=? WHERE idProducto=?";
         
         // Se crea un objeto de conexion con MySQL:
         ConnectionMySQL connMySQL = new ConnectionMySQL();
@@ -124,7 +124,8 @@ public class ControllerProducto
         pstmt.setDouble(3, p.getPrecioCompra());
         pstmt.setDouble(4, p.getPrecioVenta());
         pstmt.setDouble(5, p.getExistencia());
-        pstmt.setInt(6, p.getId());
+        pstmt.setInt(6, p.getStatus());
+        pstmt.setInt(7, p.getId());
         
         // Se ejecuta la sentencia:
         pstmt.executeUpdate();
@@ -182,7 +183,7 @@ public class ControllerProducto
     {
         // Se define la consulta SQL que devuelve todos los productos
         // ordenados por nombre de manera ascendente:
-        String sql = "SELECT * FROM v_producto WHERE estatus=1 ORDER BY nombre ASC";
+        String sql = "SELECT * FROM v_producto ORDER BY nombre ASC";
         
         // Se crea un objeto de conexion con MySQL:
         ConnectionMySQL connMySQL = new ConnectionMySQL();

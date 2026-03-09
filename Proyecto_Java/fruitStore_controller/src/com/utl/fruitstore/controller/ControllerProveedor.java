@@ -14,7 +14,7 @@ import com.utl.fruitstore.db.ConnectionMySQL;
 
 public class ControllerProveedor {
     public int insert(Proveedor pr) throws Exception {
-        String sql = "INSERT INTO proveedor(nombre, razonSocial, rfc, direccion, email, telefonoFijo, telefonoMovil) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO proveedor(nombre, razonSocial, rfc, direccion, email, telefonoFijo, telefonoMovil, estatus) VALUES (?, ?, ?, ?, ?, ?, ?, 1)";
         ConnectionMySQL connMySQL = new ConnectionMySQL();
         Connection conn = connMySQL.open();
         PreparedStatement pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -41,7 +41,7 @@ public class ControllerProveedor {
     
     public void update(Proveedor pr) throws Exception {
         // Se agregaron todos los campos y el ID al final para el WHERE
-        String sql = "UPDATE proveedor SET nombre=?, razonSocial=?, rfc=?, direccion=?, email=?, telefonoFijo=?, telefonoMovil=? WHERE idProveedor=?";
+        String sql = "UPDATE proveedor SET nombre=?, razonSocial=?, rfc=?, direccion=?, email=?, telefonoFijo=?, telefonoMovil=?, estatus=? WHERE idProveedor=?";
         ConnectionMySQL connMySQL = new ConnectionMySQL();
         Connection conn = connMySQL.open();
         PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -53,7 +53,8 @@ public class ControllerProveedor {
         pstmt.setString(5, pr.getEmail());
         pstmt.setString(6, pr.getTelefonoFijo());
         pstmt.setString(7, pr.getTelefonoMovil());
-        pstmt.setInt(8, pr.getId());
+        pstmt.setInt(8, pr.getStatus());
+        pstmt.setInt(9, pr.getId());
 
         pstmt.executeUpdate();
         pstmt.close();
@@ -73,7 +74,7 @@ public class ControllerProveedor {
     }
 
     public List<Proveedor> getAll(String filtro) throws Exception {
-        String sql = "SELECT * FROM proveedor WHERE estatus=1 ORDER BY nombre ASC";
+        String sql = "SELECT * FROM proveedor ORDER BY nombre ASC";
         ConnectionMySQL connMySQL = new ConnectionMySQL();
         Connection conn = connMySQL.open();
         PreparedStatement pstmt = conn.prepareStatement(sql);

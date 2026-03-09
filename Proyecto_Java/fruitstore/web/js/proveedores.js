@@ -16,15 +16,14 @@ function refrescarTablaProveedores() {
     let contenido = '';
     for (let i = 0; i < listaProveedores.length; i++) {
         let pr = listaProveedores[i];
+        let textoStatus = (pr.status === 1) ? '<span class="text-success fw-bold">Activo</span>' : '<span class="text-danger fw-bold">Inactivo</span>';
+
         contenido += '<tr>';
-        contenido += '<td>' + pr.nombre + '</td>';
-        contenido += '<td>' + pr.razonSocial + '</td>';
+        contenido += '<td class="ps-3">' + pr.nombre + '</td>';
         contenido += '<td>' + pr.rfc + '</td>';
-        contenido += '<td>' + pr.direccion + '</td>';
-        contenido += '<td>' + pr.email + '</td>';
-        contenido += '<td>' + pr.telefonoFijo + '</td>';
         contenido += '<td>' + pr.telefonoMovil + '</td>';
-        contenido += '<td>' + '<a href="#" onclick="cm.mostrarDetalleProveedor(' + i + ')">Ver Detalle</a>' + '</td>';
+        contenido += '<td>' + textoStatus + '</td>';
+        contenido += '<td class="text-center"><button class="btn btn-outline-primary btn-sm" onclick="cm.mostrarDetalleProveedor(' + i + ')">Ver Detalle</button></td>';
         contenido += '</tr>';
     }
 
@@ -46,7 +45,10 @@ export async function save() {
     proveedor.email = document.getElementById("txtEmail").value;
     proveedor.telefonoFijo = document.getElementById("txtTelFijo").value;
     proveedor.telefonoMovil = document.getElementById("txtTelMovil").value;
-
+    
+    let estatusVal = document.getElementById("txtEstatus").value.trim();
+    proveedor.status = (estatusVal === "") ? 0 : parseInt(estatusVal);
+    
     let proveedorJSON = JSON.stringify(proveedor);
 
     // Se envía como QueryParam en la URL
@@ -71,7 +73,10 @@ export async function save() {
 
     document.getElementById("txtIdProveedor").value = datos.id;
     Swal.fire('Movimiento realizado.', 'Datos del Proveedor guardados.', 'success');
+    
     cargarListaProveedores();
+    limpiarFormulario();
+    setDetalleVisible(false);
 }
 
 export async function deletE() {
@@ -107,6 +112,7 @@ export async function deletE() {
     
     cargarListaProveedores();
     limpiarFormulario();
+    setDetalleVisible(false);
 }
 
 export function mostrarDetalleProveedor(posicion) {
@@ -121,16 +127,18 @@ export function mostrarDetalleProveedor(posicion) {
     document.getElementById("txtTelFijo").value = pr.telefonoFijo;
     document.getElementById("txtTelMovil").value = pr.telefonoMovil;
     
+    if(pr.status !== undefined){ document.getElementById("txtEstatus").value = pr.status; }
+
     setDetalleVisible(true);
 }
 
 export function setDetalleVisible(valor) {
     if (valor === true) {
-        document.getElementById("divListaProveedores").style.display = '';
         document.getElementById("divDetalleProveedor").style.display = '';
+        document.getElementById("divCatalogoProveedores").style.display = 'none';
     } else {
+        document.getElementById("divCatalogoProveedores").style.display = '';
         document.getElementById("divDetalleProveedor").style.display = 'none';
-        document.getElementById("divListaProveedores").style.display = '';
     }
 }
 
@@ -139,7 +147,7 @@ export function cerrarDetalle() {
     setDetalleVisible(false);
 }
 
-function limpiarFormulario() {
+export function limpiarFormulario() {
     document.getElementById("txtIdProveedor").value = "";
     document.getElementById("txtNombre").value = "";
     document.getElementById("txtRazonSocial").value = "";
@@ -148,4 +156,5 @@ function limpiarFormulario() {
     document.getElementById("txtEmail").value = "";
     document.getElementById("txtTelFijo").value = "";
     document.getElementById("txtTelMovil").value = "";
+    document.getElementById("txtEstatus").value = "";
 }

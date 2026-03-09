@@ -49,7 +49,28 @@ public class ControllerCategoria
      */
     public int insert(Categoria g) throws Exception
     {
-        return 0;
+        // Se define la consulta SQL:
+        String sql = "INSERT INTO categoria(nombre, estatus) VALUES(?, ?)";
+        
+        ConnectionMySQL connMySQL = new ConnectionMySQL();
+        Connection conn = connMySQL.open();
+        
+        PreparedStatement pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+        
+        pstmt.setString(1, g.getNombre());
+        pstmt.setInt(2, 1); // Por defecto al crear una categoría, el estatus es 1 (Activo)
+        
+        pstmt.executeUpdate();
+        
+        ResultSet rs = pstmt.getGeneratedKeys();
+        if (rs.next())
+            g.setId(rs.getInt(1));
+            
+        rs.close();
+        pstmt.close();
+        conn.close();
+        
+        return g.getId();
     }
     
     /**
@@ -63,7 +84,22 @@ public class ControllerCategoria
      */
     public void update(Categoria g) throws Exception
     {
+        // Se define la consulta SQL (Aquí SÍ actualizamos el estatus también):
+        String sql = "UPDATE categoria SET nombre=?, estatus=? WHERE idCategoria=?";
         
+        ConnectionMySQL connMySQL = new ConnectionMySQL();
+        Connection conn = connMySQL.open();
+        
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        
+        pstmt.setString(1, g.getNombre());
+        pstmt.setInt(2, g.getStatus()); // Toma el estatus que mandas desde el Front-End
+        pstmt.setInt(3, g.getId());
+        
+        pstmt.executeUpdate();
+        
+        pstmt.close();
+        conn.close();
     }
     
     /**
@@ -77,7 +113,20 @@ public class ControllerCategoria
      */
     public void delete (int id) throws Exception
     {
+        // Se define la consulta SQL para dar de baja lógica (estatus = 0):
+        String sql = "UPDATE categoria SET estatus=0 WHERE idCategoria=?";
         
+        ConnectionMySQL connMySQL = new ConnectionMySQL();
+        Connection conn = connMySQL.open();
+        
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        
+        pstmt.setInt(1, id);
+        
+        pstmt.executeUpdate();
+        
+        pstmt.close();
+        conn.close();
     }
     
     /**
