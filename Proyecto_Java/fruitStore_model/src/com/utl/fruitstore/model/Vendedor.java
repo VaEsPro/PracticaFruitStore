@@ -1,4 +1,4 @@
-package org.utl.fruitstore.model;
+package com.utl.fruitstore.model;
 /**
  *
  * @author oswal

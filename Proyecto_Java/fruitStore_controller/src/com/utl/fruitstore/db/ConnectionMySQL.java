@@ -1,4 +1,4 @@
-package org.utl.fruitstore.db;
+package com.utl.fruitstore.db;
 /**
  *
  * @author oswal

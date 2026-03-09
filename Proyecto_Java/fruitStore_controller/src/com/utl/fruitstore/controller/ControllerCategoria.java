@@ -24,10 +24,10 @@ Email:      oswaldocleon@gmail.com - 89104@alumnos.utleon.edu.mx
 Comments:   Ejemplos y práctica para la clase de programación orientada a
             objetos.
 */
-package org.utl.fruitstore.controller;
+package com.utl.fruitstore.controller;
 
-import org.utl.fruitstore.db.ConnectionMySQL;
-import org.utl.fruitstore.model.Categoria;
+import com.utl.fruitstore.db.ConnectionMySQL;
+import com.utl.fruitstore.model.Categoria;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.Connection;

@@ -1,15 +1,15 @@
-package org.utl.fruitstore.controller;
+package com.utl.fruitstore.controller;
 /**
  *
  * @author oswal
  */
 
-import org.utl.fruitstore.model.Usuario;
-import org.utl.fruitstore.model.Vendedor;
+import com.utl.fruitstore.model.Usuario;
+import com.utl.fruitstore.model.Vendedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import org.utl.fruitstore.db.ConnectionMySQL;
+import com.utl.fruitstore.db.ConnectionMySQL;
 
 public class ControllerUsuario {
     public Usuario validate(String nombre, String contrasenia) throws Exception {

@@ -9,8 +9,8 @@ import com.google.gson.Gson;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 import java.util.List;
-import org.utl.fruitstore.controller.ControllerVendedor;
-import org.utl.fruitstore.model.Vendedor;
+import com.utl.fruitstore.controller.ControllerVendedor;
+import com.utl.fruitstore.model.Vendedor;
 
 @Path("vendedor")
 public class RESTVendedor {

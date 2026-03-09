@@ -1,35 +1,58 @@
-package org.utl.fruitstore.controller;
+/*
+Artifact:   ControllerProducto.java
 
-import org.utl.fruitstore.db.ConnectionMySQL;
-import org.utl.fruitstore.model.Vendedor;
+Version:    1.0
+Date:       2024-05-28 19:00:00
+Author:     Miguel Angel Gil Rios
+Email:      angel.grios@gmail.com - mgil@utleon.edu.mx
+Comments:   Esta clase contiene los metodos para gestionar la persistencia de
+            productos.
+
+Version:    1.1
+Date:       2025-04-29 08:50:00
+Author:     Miguel Angel Gil Rios
+Email:      angel.grios@gmail.com - mgil@utleon.edu.mx
+Comments:   1.  Se cambio la declaracion del paquete para adaptarlo a un 
+                proyecto didactico de la UTL.
+            2.  Se agrego documentacion detallada a los metodos de la clase
+                para que se comprenda su funcionamiento.
+
+Version:    1.2
+Date:       2025-06-18 11:56:00
+Author:     Oswaldo Cervantes León
+Email:      oswaldocleon@gmail.com - 89104@alumnos.utleon.edu.mx
+Comments:   Ejemplos y práctica para la clase de programación orientada a
+            objetos.
+*/
+
+package com.utl.fruitstore.controller;
+
+import com.utl.fruitstore.db.ConnectionMySQL;
+import com.utl.fruitstore.model.Categoria;
+import com.utl.fruitstore.model.Producto;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
-/**
- *
- * @author oswal
- */
-public class ControllerVendedor {
+public class ControllerProducto
+{
     /**
-     * Inserta un registro en la tabla [vendedor].
+     * Inserta un registro en la tabla [producto].
      * 
-     * @param v Es un objeto de tipo Vendedor con los valores en los atributos
+     * @param p Es un objeto de tipo Producto con los valores en los atributos
      *          correspondientes.
-     * @return  Devuelve el ID de vendedor que se genero al realizar 
+     * @return  Devuelve el ID de producto que se genero al realizar 
      *          la insercion.
      * @throws Exception    Se lanza una excepcion cuando ocurre un fallo en la
      *                      comunicacion con la Base de Datos o se altero de
      *                      forma erronea una sentencia SQL.
      */
-    public int insert(Vendedor v) throws Exception
+    public int insert(Producto p) throws Exception
     {
         // Se define la consulta SQL:
-        String sql = "INSERT INTO vendedor(nombre, fechaNac, genero, calle, numExt,"
-                + "numInt, colonia, cp, ciudad, estado, pais, telefono, fechaAlta, email) "
-                + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO producto(nombre, idCategoria, precioCompra, precioVenta, existencia) VALUES(?, ?, ?, ?, ?)";
         
         // Se crea un objeto de conexion con MySQL:
         ConnectionMySQL connMySQL = new ConnectionMySQL();
@@ -49,28 +72,19 @@ public class ControllerVendedor {
         // Se llenan los valores de la sentencia SQL. 
         // Es importante recordar que el estandar JDBC es el unico caso especial
         // en el que cuyos indices comienzan en 1, en lugar de 0:
-        pstmt.setString(1, v.getNombre());
-        pstmt.setString(2, v.getFechaNac());
-        pstmt.setString(3, v.getGenero());
-        pstmt.setString(4, v.getCalle());
-        pstmt.setString(5, v.getNumInt());
-        pstmt.setString(6, v.getNumExt());
-        pstmt.setString(7, v.getColonia());
-        pstmt.setString(8, v.getCp());
-        pstmt.setString(9, v.getCiudad());
-        pstmt.setString(10, v.getEstado());
-        pstmt.setString(11, v.getPais());
-        pstmt.setString(12, v.getTelefono());
-        pstmt.setString(13, v.getFechaAlta());
-        pstmt.setString(14, v.getEmail());
+        pstmt.setString(1, p.getNombre());
+        pstmt.setInt(2, p.getCategoria().getId());
+        pstmt.setDouble(3, p.getPrecioCompra());
+        pstmt.setDouble(4, p.getPrecioVenta());
+        pstmt.setDouble(5, p.getExistencia());
         
         // Se ejecuta la sentencia:
         pstmt.executeUpdate();
         
-        // Se recupera el ID del Vendedor que se inserto:
+        // Se recupera el ID del Producto que se inserto:
         rs = pstmt.getGeneratedKeys();
         if (rs.next())
-            v.setId(rs.getInt(1)); //Se asigna el ID al objeto de tipo Vendedor
+            p.setId(rs.getInt(1)); //Se asigna el ID al objeto de tipo Producto
         
         // Se cierran los objetos de BD:
         rs.close();
@@ -78,24 +92,22 @@ public class ControllerVendedor {
         conn.close();
         
         // Se devuelve el ID que se genero:
-        return v.getId();
+        return p.getId();
     }
     
     /**
-     * Actualiza un registro en la tabla [vendedor].
+     * Actualiza un registro en la tabla [producto].
      * 
-     * @param v Es un objeto de tipo Vendedor con todos los datos que van a 
+     * @param p Es un objeto de tipo Producto con todos los datos que van a 
      *          actualizarse.
      * @throws Exception    Se lanza una excepcion cuando ocurre un fallo en la
      *                      comunicacion con la Base de Datos o se altero de
      *                      forma erronea una sentencia SQL.
      */
-    public void update(Vendedor v) throws Exception
+    public void update(Producto p) throws Exception
     {
         // Se define la consulta SQL:
-        String sql = "UPDATE vendedor SET nombre=?, fechaNac=?, genero=?, calle=?, "
-                + "numExt=?, numInt=?, colonia=?, cp=?, ciudad=?, estado=?, pais=?, "
-                + "telefono=?, fechaAlta=?, email=? WHERE idVendedor=?";
+        String sql = "UPDATE producto SET nombre=?, idCategoria=?, precioCompra=?, precioventa=?, existencia=? WHERE idProducto=?";
         
         // Se crea un objeto de conexion con MySQL:
         ConnectionMySQL connMySQL = new ConnectionMySQL();
@@ -107,20 +119,12 @@ public class ControllerVendedor {
         PreparedStatement pstmt = conn.prepareStatement(sql);
         
         // Se llenan los valores de la sentencia SQL:
-        pstmt.setString(1, v.getNombre());
-        pstmt.setString(2, v.getFechaNac());
-        pstmt.setString(3, v.getGenero());
-        pstmt.setString(4, v.getCalle());
-        pstmt.setString(5, v.getNumInt());
-        pstmt.setString(6, v.getNumExt());
-        pstmt.setString(7, v.getColonia());
-        pstmt.setString(8, v.getCp());
-        pstmt.setString(9, v.getCiudad());
-        pstmt.setString(10, v.getEstado());
-        pstmt.setString(11, v.getPais());
-        pstmt.setString(12, v.getTelefono());
-        pstmt.setString(13, v.getFechaAlta());
-        pstmt.setString(14, v.getEmail());
+        pstmt.setString(1, p.getNombre());
+        pstmt.setInt(2, p.getCategoria().getId());
+        pstmt.setDouble(3, p.getPrecioCompra());
+        pstmt.setDouble(4, p.getPrecioVenta());
+        pstmt.setDouble(5, p.getExistencia());
+        pstmt.setInt(6, p.getId());
         
         // Se ejecuta la sentencia:
         pstmt.executeUpdate();
@@ -131,10 +135,10 @@ public class ControllerVendedor {
     }
     
     /**
-     * Elimina de forma logica el registro de la tabla [vendedor] 
+     * Elimina de forma logica el registro de la tabla [producto] 
      * correspondiente al valor del identificador (ID) pasado como parametro.
      * 
-     * @param id    El valor del ID del vendedor que desea eliminarse.
+     * @param id    El valor del ID del producto que desea eliminarse.
      * @throws Exception    Se lanza una excepcion cuando ocurre un fallo en la
      *                      comunicacion con la Base de Datos o se altero de
      *                      forma erronea una sentencia SQL.
@@ -142,7 +146,7 @@ public class ControllerVendedor {
     public void delete(int id) throws Exception
     {
         // Se define la consulta SQL:
-        String sql = "UPDATE vendedor SET estatus=0 WHERE idVendedor=?";
+        String sql = "UPDATE producto SET estatus=0 WHERE idProducto=?";
         
         // Se crea un objeto de conexion con MySQL:
         ConnectionMySQL connMySQL = new ConnectionMySQL();
@@ -169,16 +173,16 @@ public class ControllerVendedor {
      * 
      * @param filtro    Un valor que sera buscado por coincidencia parcial
      *                  en todos los campos de la vista que contiene los
-     *                  registros de vendedores.
-     * @return          Devuelve una lista List&lt;Vendedor&gt;
+     *                  registros de productos.
+     * @return          Devuelve una lista List&lt;Producto&gt;
      *                  que contiene todos los registros encontrados en la BD.
      * @throws Exception 
      */
-    public List<Vendedor> getAll(String filtro) throws Exception
+    public List<Producto> getAll(String filtro) throws Exception
     {
-        // Se define la consulta SQL que devuelve a todos los vendedores
+        // Se define la consulta SQL que devuelve todos los productos
         // ordenados por nombre de manera ascendente:
-        String sql = "SELECT * FROM v_vendedor WHERE estatus=1 ORDER BY nombre ASC";
+        String sql = "SELECT * FROM v_producto WHERE estatus=1 ORDER BY nombre ASC";
         
         // Se crea un objeto de conexion con MySQL:
         ConnectionMySQL connMySQL = new ConnectionMySQL();
@@ -194,50 +198,46 @@ public class ControllerVendedor {
         
         // En este objeto de tipo lista se agregara cada registro recuperado
         // de la BD:
-        List<Vendedor> vendedores = new ArrayList<>();
+        List<Producto> productos = new ArrayList<>();
         
         // Se itera sobre cada renglon (Row) del ResultSet:
         while(rs.next())
-            vendedores.add(fill(rs)); //Por cada registro, se genera un nuevo objeto
+            productos.add(fill(rs)); //Por cada registro, se genera un nuevo objeto
         
         // Se cierran los objetos de BD:
         rs.close();
         pstmt.close();
         conn.close();
         
-        // Se devuelve la lista con los vendedores recuperados de la BD.
-        return vendedores;
+        // Se devuelve la lista con los productos recuperados de la BD.
+        return productos;
     }
     
     /**
-     * Este metodo genera un objeto de tipo <code>Vendedor<code> extrayendo 
+     * Este metodo genera un objeto de tipo <code>Producto<code> extrayendo 
      * los datos de la posicion en la que se encuentra el <i>cursor</i> del
      * <code>ResultSet<code> pasado como parametro.
      * @param rs
      * @return
      * @throws Exception 
      */
-    private Vendedor fill(ResultSet rs) throws Exception
+    private Producto fill(ResultSet rs) throws Exception
     {
-        Vendedor v = new Vendedor();
+        Producto p = new Producto();
+        Categoria c = new Categoria();
         
-        v.setId(rs.getInt("idVendedor"));
-        v.setNombre(rs.getString("nombre"));
-        v.setFechaNac(rs.getString("fechaNac"));
-        v.setGenero(rs.getString("genero"));
-        v.setCalle(rs.getString("calle"));
-        v.setNumExt(rs.getString("numExt"));
-        v.setNumInt(rs.getString("numInt"));
-        v.setColonia(rs.getString("colonia"));
-        v.setCp(rs.getString("cp"));
-        v.setCiudad(rs.getString("ciudad"));
-        v.setEstado(rs.getString("estado"));
-        v.setPais(rs.getString("pais"));
-        v.setTelefono(rs.getString("telefono"));
-        v.setFechaAlta(rs.getString("fechaAlta"));
-        v.setEmail(rs.getString("email"));
-        v.setStatus(rs.getInt("estatus"));
+        p.setId(rs.getInt("idProducto"));
+        p.setNombre(rs.getString("nombre"));
+        p.setPrecioCompra(rs.getDouble("precioCompra"));
+        p.setPrecioVenta(rs.getDouble("precioVenta"));
+        p.setExistencia(rs.getDouble("existencia"));
+        p.setStatus(rs.getInt("estatus"));
         
-        return v;
+        c.setId(rs.getInt("idCategoria"));
+        c.setNombre(rs.getString("nombreCategoria"));
+        
+        p.setCategoria(c); 
+        
+        return p;
     }
 }

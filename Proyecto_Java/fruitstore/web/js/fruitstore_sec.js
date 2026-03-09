@@ -36,7 +36,7 @@ function loadLocalUser() {
     let usuario = null;
     let nombreCompleto = null;
 
-    if (localStorage.getItem("datosUsuario") == null) {
+    if (localStorage.getItem("datosUsuario") === null) {
         window.location.href = "../index.html";
         return;
     } else {

@@ -1,16 +1,16 @@
-package org.utl.fruitstore.controller;
+package com.utl.fruitstore.controller;
 /**
  *
  * @author oswal
  */
 
-import org.utl.fruitstore.model.Proveedor;
+import com.utl.fruitstore.model.Proveedor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import org.utl.fruitstore.db.ConnectionMySQL;
+import com.utl.fruitstore.db.ConnectionMySQL;
 
 public class ControllerProveedor {
     public int insert(Proveedor pr) throws Exception {

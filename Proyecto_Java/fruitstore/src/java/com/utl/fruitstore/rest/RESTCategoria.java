@@ -8,8 +8,8 @@ import com.google.gson.Gson;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 import java.util.List;
-import org.utl.fruitstore.controller.ControllerCategoria;
-import org.utl.fruitstore.model.Categoria;
+import com.utl.fruitstore.controller.ControllerCategoria;
+import com.utl.fruitstore.model.Categoria;
 
 @Path("categoria")
 public class RESTCategoria {

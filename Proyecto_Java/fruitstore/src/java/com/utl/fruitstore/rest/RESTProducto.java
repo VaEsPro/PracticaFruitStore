@@ -8,8 +8,8 @@ import com.google.gson.Gson;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
 import java.util.List;
-import org.utl.fruitstore.controller.ControllerProducto;
-import org.utl.fruitstore.model.Producto;
+import com.utl.fruitstore.controller.ControllerProducto;
+import com.utl.fruitstore.model.Producto;
 
 @Path("producto")
 public class RESTProducto {

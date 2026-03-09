@@ -51,7 +51,7 @@ export async function save() {
     else
         producto.id = parseInt(document.getElementById("txtIdProducto").value.trim());
     
-    producto.nombre = document.getElementById("txtNombre").value;
+    producto.nombre = document.getElementById("txtNomProducto").value;
     producto.precioCompra = parseFloat(document.getElementById("txtPrecioCompra").value);
     producto.precioVenta = parseFloat(document.getElementById("txtPrecioVenta").value);
     producto.existencia = parseFloat(document.getElementById("txtExistencias").value);
@@ -123,7 +123,7 @@ export async function deletE() {
 export function mostrarDetalleProducto(posicion) {
     let p = listaProductos[posicion];
     document.getElementById("txtIdProducto").value = p.id;
-    document.getElementById("txtNombre").value = p.nombre;
+    document.getElementById("txtNomProducto").value = p.nombre;
     document.getElementById("cmbCategoria").value = p.categoria.id;
     document.getElementById("txtPrecioCompra").value = p.precioCompra;
     document.getElementById("txtPrecioVenta").value = p.precioVenta;
@@ -133,11 +133,11 @@ export function mostrarDetalleProducto(posicion) {
 
 export function setDetalleVisible(valor) {
     if (valor === true) {
-        document.getElementById("divCatalogo").style.display = '';
-        document.getElementById("divDetalleProducto").style.display = '';
+        document.getElementById("divFormProductos").style.display = '';
+        document.getElementById("divTablaProductos").style.display = '';
     } else {
-        document.getElementById("divDetalleProducto").style.display = 'none';
-        document.getElementById("divCatalogo").style.display = '';
+        document.getElementById("divTablaProductos").style.display = 'none';
+        document.getElementById("divFormProductos").style.display = '';
     }
 }
 
@@ -148,7 +148,7 @@ export function cerrarDetalle() {
 
 function limpiarFormulario() {
     document.getElementById("txtIdProducto").value = "";
-    document.getElementById("txtNombre").value = "";
+    document.getElementById("txtNomProducto").value = "";
     document.getElementById("cmbCategoria").value = 0;
     document.getElementById("txtPrecioCompra").value = "";
     document.getElementById("txtPrecioVenta").value = "";

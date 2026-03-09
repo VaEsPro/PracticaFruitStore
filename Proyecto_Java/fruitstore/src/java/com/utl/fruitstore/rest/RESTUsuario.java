@@ -9,8 +9,8 @@ package com.utl.fruitstore.rest;
 import com.google.gson.Gson;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.*;
-import org.utl.fruitstore.controller.ControllerUsuario;
-import org.utl.fruitstore.model.Usuario;
+import com.utl.fruitstore.controller.ControllerUsuario;
+import com.utl.fruitstore.model.Usuario;
 
 // Query param solo funciona con Get
 // POST, PUT, PUSH, DELETE

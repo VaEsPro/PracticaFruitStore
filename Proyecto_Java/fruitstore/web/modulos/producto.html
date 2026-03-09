@@ -12,13 +12,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-4">
                         <div class="form-floating">
                             <input id="txtNomProducto" type="text" class="form-control" placeholder="Nombre del Producto:"/>
                             <label for="txtNomProducto" >Nombre del Producto:</label>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-4">
                         <div class="form-floating">
                             <select id="cmbCategoria" class="form-select">
                                 <option>Fruta</option>
@@ -31,16 +31,24 @@
                             <label for="cmbCategoria" class="form-label">Categoria:</label>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-4">
                         <div class="form-floating">
-                            <input id="txtPrecio" type="text" class="form-control" placeholder="Precio:"/>
-                            <label for="txtPrecio" class="form-label">Precio:</label>
+                            <input id="txtExistencias" type="text" class="form-control" placeholder="Estatus:"/>
+                            <label for="txtExistencias" class="form-label">Estatus:</label>
                         </div>
                     </div>
-                    <div class="col-3">
+                </div>
+                <div class="row">
+                    <div class="col-6">
                         <div class="form-floating">
-                            <input id="txtEstatus" type="text" class="form-control" placeholder="Estatus:"/>
-                            <label for="txtEstatus" class="form-label">Estatus:</label>
+                            <input id="txtPrecioCompra" type="text" class="form-control" placeholder="Precio:"/>
+                            <label for="txtPrecioCompra" class="form-label">Precio Compra:</label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <input id="txtPrecioVenta" type="text" class="form-control" placeholder="Precio:"/>
+                            <label for="txtPrecioVenta" class="form-label">Precio Venta:</label>
                         </div>
                     </div>
                 </div>
@@ -68,8 +76,9 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Categoria</th>
-                            <th>Precio</th>
-                            <th>Estatus</th>
+                            <th>PrecioCompra</th>
+                            <th>PrecioVenta</th>
+                            <th>Existencia</th>
                             <th></th>
                         </tr>
                     </thead>
