@@ -52,7 +52,7 @@ public class ControllerProducto
     public int insert(Producto p) throws Exception
     {
         // Se define la consulta SQL:
-        String sql = "INSERT INTO producto(nombre, idCategoria, precioCompra, precioVenta, existencia, estatus) VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO producto(nombre, idCategoria, precioCompra, precioVenta, existencia, estatus) VALUES(?, ?, ?, ?, ?, 1)";
         
         // Se crea un objeto de conexion con MySQL:
         ConnectionMySQL connMySQL = new ConnectionMySQL();

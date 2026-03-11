@@ -68,7 +68,7 @@ export async function save() {
     let datos = await resp.json();
 
     if (datos.error != null) {
-        Swal.fire("", "Error al guardar Vendedor.", "warning");
+        Swal.fire("", "Error al guardar vendedor.", "warning");
         return;
     }
 
@@ -78,7 +78,7 @@ export async function save() {
     }
 
     document.getElementById("txtIdVendedor").value = datos.id;
-    Swal.fire('Movimiento realizado.', 'Datos del Vendedor guardados.', 'success');
+    Swal.fire('Movimiento realizado.', 'Datos del vendedor guardados.', 'success');
     
     cargarListaVendedores();
     limpiarFormulario();

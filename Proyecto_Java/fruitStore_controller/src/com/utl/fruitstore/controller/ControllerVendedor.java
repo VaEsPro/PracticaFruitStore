@@ -28,8 +28,8 @@ public class ControllerVendedor {
     {
         // Se define la consulta SQL:
         String sql = "INSERT INTO vendedor(nombre, fechaNac, genero, calle, numExt,"
-                + "numInt, colonia, cp, ciudad, estado, pais, telefono, fechaAlta, email) "
-                + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "numInt, colonia, cp, ciudad, estado, pais, telefono, fechaAlta, email, estatus) "
+                + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)";
         
         // Se crea un objeto de conexion con MySQL:
         ConnectionMySQL connMySQL = new ConnectionMySQL();

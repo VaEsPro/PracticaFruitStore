@@ -45,7 +45,7 @@ function loadLocalUser() {
     }
 }
 
-// Y aquí está la función de salir, justo como la sugirieron
+
 async function logout() {
     localStorage.removeItem("datosUsuario");
     window.location.href = "../index.html";

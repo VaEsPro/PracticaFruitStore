@@ -54,7 +54,7 @@ export async function save() {
     let datos = await resp.json();
     
     if (datos.error != null) {
-        Swal.fire("", "Error al guardar Categoría.", "warning");
+        Swal.fire("", "Error al guardar categoría.", "warning");
         return;
     }
     
@@ -64,7 +64,7 @@ export async function save() {
     }
                 
     document.getElementById("txtIdCategoria").value = datos.id;
-    Swal.fire('Movimiento realizado.', 'Datos de Categoría guardados.', 'success');
+    Swal.fire('Movimiento realizado.', 'Datos de categoría guardados.', 'success');
     
     cargarListaCategorias();
     limpiarFormulario();

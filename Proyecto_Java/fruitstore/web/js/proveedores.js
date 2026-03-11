@@ -62,7 +62,7 @@ export async function save() {
     let datos = await resp.json();
 
     if (datos.error != null) {
-        Swal.fire("", "Error al guardar Proveedor.", "warning");
+        Swal.fire("", "Error al guardar proveedor.", "warning");
         return;
     }
 
@@ -72,7 +72,7 @@ export async function save() {
     }
 
     document.getElementById("txtIdProveedor").value = datos.id;
-    Swal.fire('Movimiento realizado.', 'Datos del Proveedor guardados.', 'success');
+    Swal.fire('Movimiento realizado.', 'Datos del proveedor guardados.', 'success');
     
     cargarListaProveedores();
     limpiarFormulario();

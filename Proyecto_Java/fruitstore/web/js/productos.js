@@ -93,7 +93,7 @@ export async function save() {
     let datos = await resp.json();
 
     if (datos.error != null) {
-        Swal.fire("", "Error al guardar Producto.", "warning");
+        Swal.fire("", "Error al guardar producto.", "warning");
         return;
     }
 
@@ -103,7 +103,7 @@ export async function save() {
     }
 
     document.getElementById("txtIdProducto").value = datos.id;
-    Swal.fire('Movimiento realizado.', 'Datos de Productos guardados.', 'success');
+    Swal.fire('Movimiento realizado.', 'Datos de productos guardados.', 'success');
 
     cargarListaProductos();
     limpiarFormulario();
